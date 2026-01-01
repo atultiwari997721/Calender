@@ -1,0 +1,201 @@
+.calendarContainer {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-glass);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-glass), var(--shadow-lg);
+  padding: var(--spacing-xl);
+  width: 100%;
+  max-width: 900px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.monthTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.navControls {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.navButton {
+  padding: var(--spacing-xs);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton:hover {
+  background-color: var(--bg-glass);
+  color: var(--primary-color);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.dayName {
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: var(--spacing-sm) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dayNameSunday {
+  color: var(--sunday-color);
+}
+
+.dayCell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid transparent;
+}
+
+.dayCell:hover {
+  background: var(--bg-glass);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  z-index: 10;
+}
+
+.notCurrentMonth {
+  opacity: 0.4;
+  pointer-events: none; /* Optional: Disable interaction for other month days */
+}
+
+.today {
+  border: 2px solid var(--primary-color);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.sunday {
+  color: var(--sunday-color);
+  background: var(--sunday-bg);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.dayNumber {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.noteIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.notePreview {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .calendarContainer {
+    padding: 8px; /* Minimal padding */
+    width: 100%; /* Use full width */
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0; /* Optional: square off on mobile to save curvature space */
+    border: none; /* Remove border to save space if needed */
+  }
+
+  .header {
+    margin-bottom: var(--spacing-sm);
+    flex-direction: row;
+    padding: 0 4px; /* Slight padding for header text */
+  }
+
+  .monthTitle {
+    font-size: 1rem;
+  }
+
+  .grid {
+    gap: 2px; /* Minimal gap */
+    width: 100%;
+  }
+
+  .dayCell {
+    padding: 0;
+    min-height: 40px; /* Reduced height */
+    aspect-ratio: auto; /* Remove fixed aspect ratio if it causes width issues */
+    height: 50px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 4px;
+  }
+
+  .dayNumber {
+    font-size: 0.85rem;
+    margin: 0;
+    z-index: 2;
+  }
+
+  .notePreview {
+    display: none; 
+  }
+  
+  .noteIndicator {
+    width: 4px;
+    height: 4px;
+    bottom: 4px;
+    right: 50%;
+    transform: translateX(50%);
+    display: block !important;
+    position: absolute;
+  }
+  
+  .dayName {
+    font-size: 0.7rem;
+    padding: 4px 0;
+  }
+}

@@ -1,0 +1,103 @@
+.scheduleContainer {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--bg-glass);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  animation: slideUp 0.4s ease-out;
+}
+
+.dayTitle {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.slot {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background: var(--bg-slot);
+  transition: all var(--transition-fast);
+}
+
+.slot:hover {
+  background: var(--bg-glass);
+  transform: translateX(5px);
+}
+
+.time {
+  min-width: 100px;
+  font-weight: 600;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.subject {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.type {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.noClasses {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-muted);
+}
+
+.specialDay {
+  text-align: center;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass);
+  margin-top: var(--spacing-lg);
+  font-weight: bold;
+}
+
+.holiday {
+  color: var(--sunday-color);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.expert {
+  color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .slot {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+}
