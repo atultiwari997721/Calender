@@ -98,13 +98,38 @@
 
 .today {
   border: 2px solid var(--primary-color);
-  background: rgba(99, 102, 241, 0.05);
+  background: rgba(44, 47, 228, 0.05);
 }
 
 .sunday {
   color: var(--sunday-color);
   background: var(--sunday-bg);
   border-color: rgba(239, 68, 68, 0.2);
+}
+
+.saturday {
+  background: rgba(240, 164, 102, 0.15); /* Yellow-400 with opacity */
+  border: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+.holiday {
+  color: var(--sunday-color);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.holidayText {
+  font-size: 0.6rem;
+  color: var(--sunday-color);
+  margin-top: 2px;
+  line-height: 1.1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .dayNumber {

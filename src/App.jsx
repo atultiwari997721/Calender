@@ -28,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Calendar />} />
         <Route path="/atultiwari" element={<TimeTablePage />} />
+        <Route path="/time" element={<TimeTablePage />} />
       </Routes>
     </div>
   );

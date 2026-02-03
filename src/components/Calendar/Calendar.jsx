@@ -5,6 +5,8 @@ import CalendarGrid from './CalendarGrid';
 import NoteModal from '../Modal/NoteModal';
 import styles from './Calendar.module.css';
 
+import { holidays } from '../../data/holidays';
+
 const Calendar = ({ onDateSelectOverride }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -52,6 +54,7 @@ const Calendar = ({ onDateSelectOverride }) => {
         currentMonth={currentMonth} 
         onDateClick={onDateClick} 
         notes={notes}
+        holidays={holidays}
       />
       {selectedDate && (
         <NoteModal 

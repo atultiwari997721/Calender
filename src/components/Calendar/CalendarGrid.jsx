@@ -2,11 +2,11 @@ import React from 'react';
 import { 
   startOfMonth, endOfMonth, startOfWeek, endOfWeek, 
   eachDayOfInterval, isSameMonth, isSameDay, isToday, 
-  isSunday, format 
+  isSunday, isSaturday, format 
 } from 'date-fns';
 import styles from './Calendar.module.css';
 
-const CalendarGrid = ({ currentMonth, onDateClick, notes }) => {
+const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -33,7 +33,9 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes }) => {
       {days.map((day) => {
         const dateKey = format(day, 'yyyy-MM-dd');
         const note = notes[dateKey];
+        const holiday = holidays ? holidays[dateKey] : null;
         const isSun = isSunday(day);
+        const isSat = isSaturday(day);
         
         return (
           <div
@@ -43,10 +45,18 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes }) => {
               ${!isSameMonth(day, monthStart) ? styles.notCurrentMonth : ''}
               ${isToday(day) ? styles.today : ''}
               ${isSun && isSameMonth(day, monthStart) ? styles.sunday : ''}
+              ${isSat && isSameMonth(day, monthStart) ? styles.saturday : ''}
+              ${holiday ? styles.holiday : ''}
             `}
             onClick={() => onDateClick(day)}
+            title={holiday} 
           >
             <span className={styles.dayNumber}>{format(day, 'd')}</span>
+            
+            {holiday && (
+              <div className={styles.holidayText}>{holiday}</div>
+            )}
+            
             {note && (
               <>
                 <div className={styles.noteIndicator} />
