@@ -7,16 +7,21 @@ export const holidays = {
   '2026-02-01': 'Guru Ravidas Jayanti',
   '2026-02-12': 'Maharishi Dayanand Saraswati Jayanti',
   '2026-02-15': 'Maha Shivaratri',
-  '2026-02-19': 'Shivaji Jayanti',
+  '2026-02-18': 'MST-I',
+  '2026-02-19': 'Shivaji Jayanti / MST-I',
+  '2026-02-20': 'MST-I',
 
   // March
   '2026-03-04': 'Holi',
   '2026-03-21': 'Id-Ul-Fitr (Tentative)',
-  '2026-03-26': 'Rama Navami',
+  '2026-03-26': 'Rama Navami / MST-II',
+  '2026-03-27': 'MST-II',
+  '2026-03-28': 'MST-II',
   '2026-03-31': 'Mahavir Jayanti',
 
   // April
   '2026-04-03': 'Good Friday',
+  '2026-04-07': 'End Sem Exam Starts',
   '2026-04-14': 'Ambedkar Jayanti',
   '2026-04-15': 'Vaisakhadi / Bahag Bihu',
 
@@ -26,6 +31,9 @@ export const holidays = {
 
   // June
   '2026-06-26': 'Muharram (Tentative)',
+  
+  // July
+  '2026-07-01': '5th Sem Starts',
 
   // August
   '2026-08-15': 'Independence Day',
