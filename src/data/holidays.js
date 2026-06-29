@@ -33,7 +33,11 @@ export const holidays = {
   '2026-06-26': 'Muharram (Tentative)',
   
   // July
-  '2026-07-01': '5th Sem Starts',
+  '2026-07-01': 'Registration (5th Sem)',
+  '2026-07-02': 'Registration (5th Sem)',
+  '2026-07-03': 'Registration (5th Sem)',
+  '2026-07-04': 'Registration (5th Sem)',
+  '2026-07-06': 'Commencement of Classes (5th Sem)',
 
   // August
   '2026-08-15': 'Independence Day',
@@ -42,6 +46,9 @@ export const holidays = {
   
   // September
   '2026-09-04': 'Janmashtami',
+  '2026-09-10': 'MST-I',
+  '2026-09-11': 'MST-I',
+  '2026-09-12': 'MST-I',
   '2026-09-14': 'Ganesh Chaturthi',
 
   // October
@@ -50,9 +57,14 @@ export const holidays = {
   '2026-10-26': 'Maharishi Valmiki Jayanti',
 
   // November
+  '2026-11-02': 'MST-II',
+  '2026-11-03': 'MST-II',
+  '2026-11-04': 'MST-II',
   '2026-11-08': 'Diwali',
+  '2026-11-17': 'End Sem Exam Starts',
   '2026-11-24': 'Guru Nanak Jayanti',
 
   // December
+  '2026-12-10': 'Commencement of Next Sem (6th Sem)',
   '2026-12-25': 'Christmas'
 };

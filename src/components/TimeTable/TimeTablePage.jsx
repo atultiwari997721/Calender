@@ -88,11 +88,12 @@ const TimeTablePage = () => {
             </thead>
             <tbody>
               {[
-                { event: 'Commencement of Classes', date: '1 July 2026' },
-                { event: 'MST-I', date: '18-20 Aug 2026' },
-                { event: 'MST-II', date: '28-30 Sept 2026' },
-                { event: 'End Sem Exam Starts', date: '9 Nov 2026' },
-                { event: 'Winter Vacation', date: '15-31 Dec 2026' },
+                { event: 'Registration (5th Sem)', date: '1-4 July 2026' },
+                { event: 'Commencement of Classes', date: '6 July 2026' },
+                { event: 'MST-I', date: '10-12 Sept 2026' },
+                { event: 'MST-II', date: '2-4 Nov 2026' },
+                { event: 'Commencement of End Sem Exam', date: '17 Nov 2026' },
+                { event: 'Commencement of Next Sem (6th Sem)', date: '10 Dec 2026' },
               ].map((item, index) => (
                 <tr key={index} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '10px' }}>{item.event}</td>
