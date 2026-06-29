@@ -77,7 +77,7 @@ const TimeTablePage = () => {
         border: '1px solid var(--border-color)',
         boxShadow: 'var(--shadow-md)'
       }}>
-        <h2 style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Academic Calendar (Jan-June 2026)</h2>
+        <h2 style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Academic Calendar (Jul-Dec 2026)</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)' }}>
             <thead>
@@ -88,16 +88,59 @@ const TimeTablePage = () => {
             </thead>
             <tbody>
               {[
-                { event: 'Registration', date: '15-20 Dec 2025' },
-                { event: 'Commencement of Classes', date: '22 Dec 2025' },
-                { event: 'MST-I', date: '18-20 Feb 2026' },
-                { event: 'MST-II', date: '26-28 March 2026' },
-                { event: 'End Sem Exam Starts', date: '7 April 2026' },
-                { event: 'Next Semester (5th)', date: '1 July 2026' },
+                { event: 'Commencement of Classes', date: '1 July 2026' },
+                { event: 'MST-I', date: '18-20 Aug 2026' },
+                { event: 'MST-II', date: '28-30 Sept 2026' },
+                { event: 'End Sem Exam Starts', date: '9 Nov 2026' },
+                { event: 'Winter Vacation', date: '15-31 Dec 2026' },
               ].map((item, index) => (
                 <tr key={index} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '10px' }}>{item.event}</td>
                   <td style={{ padding: '10px' }}>{item.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style={{ 
+        marginTop: '30px', 
+        width: '100%', 
+        background: 'var(--bg-card)', 
+        padding: '20px', 
+        borderRadius: '12px',
+        border: '1px solid var(--border-color)',
+        boxShadow: 'var(--shadow-md)',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Subject & Faculty Reference (Semester 5)</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)' }}>
+            <thead>
+              <tr style={{ background: 'var(--bg-glass)', borderBottom: '2px solid var(--border-color)' }}>
+                <th style={{ padding: '10px', textAlign: 'left' }}>Code</th>
+                <th style={{ padding: '10px', textAlign: 'left' }}>Subject Name</th>
+                <th style={{ padding: '10px', textAlign: 'left' }}>Faculty</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { code: 'PCC CL10', subject: 'Database Management System (DBMS)', faculty: 'Ms. Abhilasha Vyas (AV), Mr. Ved Kumar Gupta (VKG)' },
+                { code: 'PCC CL11', subject: 'Foundations of Machine Learning (FML)', faculty: 'Ms. Megha Chokhada (MC) / YY' },
+                { code: 'PCC CL12', subject: 'Neural Network (NN)', faculty: 'Ms. Pratibha Singh Tomar (PST)' },
+                { code: 'PEC CL01', subject: 'Elective-I [Information Storage Management] (ISM)', faculty: 'Ms. Ankita Dubey (AD)' },
+                { code: 'SBC CL02', subject: 'Programming with Java Script (JS)', faculty: 'Ms. Mohini Lowanshi (ML)' },
+                { code: 'HSMC HS06', subject: 'HSSOC- II [Business Communication] (BC)', faculty: 'Ms. Rachana Bairagi (RB)' },
+                { code: 'IFC EC01', subject: 'IFC-II [Sensors and Automation] (S&A)', faculty: 'Mr. Devendra Shinde (MDS)' },
+                { code: 'MLC MLC03', subject: 'Environmental Studies (ES)', faculty: 'Mr. Kantikumar Athankar (DKA)' },
+                { code: 'PROJ CL02', subject: 'Mini Project', faculty: 'Dr. Vandana Dubey (VD)' },
+                { code: 'PROJ', subject: 'Internship-I', faculty: 'Dr. Vandana Dubey (VD)' },
+              ].map((item, index) => (
+                <tr key={index} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                  <td style={{ padding: '10px', fontWeight: 'bold', fontSize: '0.9rem', color: 'var(--accent-color)' }}>{item.code}</td>
+                  <td style={{ padding: '10px' }}>{item.subject}</td>
+                  <td style={{ padding: '10px', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{item.faculty}</td>
                 </tr>
               ))}
             </tbody>
