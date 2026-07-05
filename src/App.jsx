@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Calendar from './components/Calendar/Calendar';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 import TimeTablePage from './components/TimeTable/TimeTablePage';
+import DatesPage from './components/Dates/DatesPage';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<Calendar />} />
         <Route path="/atultiwari" element={<TimeTablePage />} />
         <Route path="/time" element={<TimeTablePage />} />
+        <Route path="/dates" element={<DatesPage />} />
       </Routes>
     </div>
   );

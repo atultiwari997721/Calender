@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { format, isSunday } from 'date-fns';
+import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import Calendar from '../Calendar/Calendar';
 import ScheduleDisplay from './ScheduleDisplay';
+import LectureDetailModal from '../Modal/LectureDetailModal';
 import { timeTable } from '../../data/timeTable';
 import { holidays } from '../../data/holidays';
 
 const TimeTablePage = () => {
   const [selectedDaySchedule, setSelectedDaySchedule] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedLectureSlot, setSelectedLectureSlot] = useState(null);
 
   const scheduleRef = React.useRef(null);
 
@@ -40,7 +42,6 @@ const TimeTablePage = () => {
       schedule: schedule,
       holiday: holiday 
     });
-    setSelectedDate(date);
   };
 
   return (
@@ -64,8 +65,17 @@ const TimeTablePage = () => {
             schedule={selectedDaySchedule.schedule} 
             dayName={`${selectedDaySchedule.day}, ${format(selectedDaySchedule.date, 'MMMM do')}`} 
             holiday={selectedDaySchedule.holiday}
+            onSlotClick={setSelectedLectureSlot}
           />
         </div>
+      )}
+
+      {selectedLectureSlot && (
+        <LectureDetailModal
+          slot={selectedLectureSlot}
+          dayName={selectedDaySchedule ? `${selectedDaySchedule.day}, ${format(selectedDaySchedule.date, 'MMMM do')}` : ''}
+          onClose={() => setSelectedLectureSlot(null)}
+        />
       )}
 
       <div style={{ 
@@ -102,6 +112,11 @@ const TimeTablePage = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
+          <Link to="/dates" style={{ fontSize: '0.9rem', color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = 'var(--primary-hover)'} onMouseOut={(e) => e.target.style.color = 'var(--primary-color)'}>
+            View Full Academic Calendar (Autumn & Spring) →
+          </Link>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   startOfMonth, endOfMonth, startOfWeek, endOfWeek, 
-  eachDayOfInterval, isSameMonth, isSameDay, isToday, 
+  eachDayOfInterval, isSameMonth, isToday, 
   isSunday, isSaturday, format 
 } from 'date-fns';
 import styles from './Calendar.module.css';
