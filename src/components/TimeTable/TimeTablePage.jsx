@@ -143,13 +143,13 @@ const TimeTablePage = () => {
             <tbody>
               {[
                 { code: 'PCC CL10', subject: 'Database Management System (DBMS)', faculty: 'Ms. Abhilasha Vyas (AV), Mr. Ved Kumar Gupta (VKG)' },
-                { code: 'PCC CL11', subject: 'Foundations of Machine Learning (FML)', faculty: 'Ms. Megha Chokhada (MC) / YY' },
+                { code: 'PCC CL11', subject: 'Foundations of Machine Learning (FML)', faculty: 'Mr. Yagyapal Yadav (YY)' },
                 { code: 'PCC CL12', subject: 'Neural Network (NN)', faculty: 'Ms. Pratibha Singh Tomar (PST)' },
                 { code: 'PEC CL01', subject: 'Elective-I [Information Storage Management] (ISM)', faculty: 'Ms. Ankita Dubey (AD)' },
-                { code: 'SBC CL02', subject: 'Programming with Java Script (JS)', faculty: 'Ms. Mohini Lowanshi (ML)' },
+                { code: 'SBC CL02 (P)', subject: 'Programming with Java Script (JS)', faculty: 'Ms. Mohini Lowanshi (ML)' },
                 { code: 'HSMC HS06', subject: 'HSSOC- II [Business Communication] (BC)', faculty: 'Ms. Rachana Bairagi (RB)' },
-                { code: 'IFC EC01', subject: 'IFC-II [Sensors and Automation] (S&A)', faculty: 'Mr. Devendra Shinde (MDS)' },
-                { code: 'MLC MLC03', subject: 'Environmental Studies (ES)', faculty: 'Mr. Kantikumar Athankar (DKA)' },
+                { code: 'IFC EC01', subject: 'IFC-II [Sensors and Automation] (S&A)', faculty: 'Ms. Rudrakshi Sharma (MRS)' },
+                { code: 'MLC MLC03', subject: 'Environmental Studies (ES)', faculty: 'Dr. Kantikumar Athankar (DKA)' },
                 { code: 'PROJ CL02', subject: 'Mini Project', faculty: 'Dr. Vandana Dubey (VD)' },
                 { code: 'PROJ', subject: 'Internship-I', faculty: 'Dr. Vandana Dubey (VD)' },
               ].map((item, index) => (

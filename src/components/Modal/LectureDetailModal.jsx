@@ -4,17 +4,19 @@ import { X, Clock, BookOpen, User, MapPin, Layers, Info } from 'lucide-react';
 
 const FACULTY_MAP = {
   'AD': { name: 'Ms. Ankita Dubey', role: 'Assistant Professor' },
-  'YY': { name: 'Ms. Megha Chokhada', role: 'Assistant Professor' },
+  'YY': { name: 'Mr. Yagyapal Yadav', role: 'Assistant Professor' },
   'ML': { name: 'Ms. Mohini Lowanshi', role: 'Assistant Professor' },
   'VKG': { name: 'Mr. Ved Kumar Gupta', role: 'Assistant Professor' },
   'AV': { name: 'Ms. Abhilasha Vyas', role: 'Assistant Professor' },
   'PST': { name: 'Ms. Pratibha Singh Tomar', role: 'Assistant Professor' },
   'RB': { name: 'Ms. Rachana Bairagi', role: 'Assistant Professor' },
   'MDS': { name: 'Mr. Devendra Shinde', role: 'Assistant Professor' },
-  'DKA': { name: 'Mr. Kantikumar Athankar', role: 'Assistant Professor' },
+  'MRS': { name: 'Ms. Rudrakshi Sharma', role: 'Assistant Professor' },
+  'DKA': { name: 'Dr. Kantikumar Athankar', role: 'Assistant Professor' },
   'VD': { name: 'Dr. Vandana Dubey', role: 'Head of Department (HOD)' },
   'SKB': { name: 'Mr. S. K. Bhan', role: 'Faculty Advisor' },
   'NKY': { name: 'Mr. N. K. Yadav', role: 'Associate Professor' },
+  'TN': { name: 'TN Faculty', role: 'Department Faculty' },
 };
 
 const SUBJECT_MAP = {
@@ -24,7 +26,7 @@ const SUBJECT_MAP = {
   'ISM': { code: 'PEC CL01', name: 'Elective-I [Information Storage Management] (ISM)', defaultFaculty: ['AD'] },
   'JS': { code: 'SBC CL02', name: 'Programming with Java Script (JS)', defaultFaculty: ['ML'] },
   'BC': { code: 'HSMC HS06', name: 'HSSOC- II [Business Communication] (BC)', defaultFaculty: ['RB'] },
-  'S&A': { code: 'IFC EC01', name: 'IFC-II [Sensors and Automation] (S&A)', defaultFaculty: ['MDS'] },
+  'S&A': { code: 'IFC EC01', name: 'IFC-II [Sensors and Automation] (S&A)', defaultFaculty: ['MRS'] },
   'ES': { code: 'MLC MLC03', name: 'Environmental Studies (ES)', defaultFaculty: ['DKA'] },
   'MINI PROJECT': { code: 'PROJ CL02', name: 'Mini Project', defaultFaculty: ['VD'] },
   'INTERNSHIP': { code: 'PROJ', name: 'Internship-I', defaultFaculty: ['VD'] },
