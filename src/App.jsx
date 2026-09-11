@@ -4,6 +4,8 @@ import Calendar from './components/Calendar/Calendar';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 import TimeTablePage from './components/TimeTable/TimeTablePage';
 import DatesPage from './components/Dates/DatesPage';
+import MobileNav from './components/MobileNav/MobileNav';
+import OfflineBanner from './components/OfflineBanner/OfflineBanner';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <div className="app-container" style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <OfflineBanner />
       <ThemeToggle isDark={theme === 'dark'} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Calendar />} />
@@ -32,6 +35,7 @@ function App() {
         <Route path="/time" element={<TimeTablePage />} />
         <Route path="/dates" element={<DatesPage />} />
       </Routes>
+      <MobileNav />
     </div>
   );
 }

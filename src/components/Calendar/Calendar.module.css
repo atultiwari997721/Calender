@@ -134,9 +134,9 @@
 }
 
 .academicEvent {
-  background: rgba(70, 134, 237, 0.36); /* Blue-500 with opacity */
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: var(--primary-color);
+  background: rgba(2, 132, 199, 0.18);
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  color: var(--accent-color);
 }
 
 .academicText {
@@ -205,12 +205,12 @@
 
 @media (max-width: 768px) {
   .calendarContainer {
-    padding: 8px; /* Minimal padding */
-    width: 100%; /* Use full width */
+    padding: 12px 8px;
+    width: 100%;
     max-width: 100%;
-    margin: 0;
-    border-radius: 0; /* Optional: square off on mobile to save curvature space */
-    border: none; /* Remove border to save space if needed */
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
   }
 
   .header {

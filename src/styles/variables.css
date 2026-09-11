@@ -1,26 +1,26 @@
 :root {
-  /* Colors */
-  --bg-app: #f0f2f5;
-  --bg-card: rgba(255, 255, 255, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.6);
-  --bg-slot: rgba(255, 255, 255, 0.5);
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
+  /* Colors - Modern Deep Teal & Electric Cyan */
+  --bg-app: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-slot: rgba(255, 255, 255, 0.55);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   
-  --primary-color: #6366f1; /* Indigo */
-  --primary-hover: #4f46e5;
-  --accent-color: #8b5cf6; /* Violet */
+  --primary-color: #0f766e; /* Deep Teal */
+  --primary-hover: #115e59;
+  --accent-color: #0284c7; /* Electric Cyan/Sky */
 
-  --sunday-color: #ef4444; /* Red for Sundays */
-  --sunday-bg: #fef2f2;
+  --sunday-color: #e11d48; /* Vibrant Rose for Sundays */
+  --sunday-bg: #fff1f2;
   
-  --border-color: rgba(229, 231, 235, 0.5);
+  --border-color: rgba(203, 213, 225, 0.6);
   
-  --today-border: #2563eb;
-  --today-bg: rgba(37, 99, 235, 0.12);
-  --today-glow: rgba(37, 99, 235, 0.45);
-  --today-number: #1d4ed8;
+  --today-border: #0284c7;
+  --today-bg: rgba(2, 132, 199, 0.12);
+  --today-glow: rgba(2, 132, 199, 0.45);
+  --today-number: #0369a1;
   
   /* Typography */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -37,9 +37,9 @@
   
   /* Shadows & Radius */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glass: 0 8px 32px 0 rgba(15, 118, 110, 0.08);
   
   --radius-md: 0.5rem;
   --radius-lg: 1rem;
@@ -51,17 +51,20 @@
 }
 
 .dark-mode {
-  --bg-app: #111827;
-  --bg-card: rgba(31, 41, 55, 0.8);
-  --bg-glass: rgba(31, 41, 55, 0.6);
+  --bg-app: #090d16;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --bg-glass: rgba(15, 23, 42, 0.65);
   --bg-slot: rgba(255, 255, 255, 0.05);
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #6b7280;
-  --border-color: rgba(75, 85, 99, 0.5);
-  --sunday-bg: rgba(239, 68, 68, 0.1);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --primary-color: #14b8a6; /* Mint/Teal */
+  --primary-hover: #2dd4bf;
+  --accent-color: #38bdf8; /* Cyan/Sky */
+  --border-color: rgba(51, 65, 85, 0.6);
+  --sunday-bg: rgba(225, 29, 72, 0.15);
   --today-border: #38bdf8;
   --today-bg: rgba(56, 189, 248, 0.18);
-  --today-glow: rgba(56, 189, 248, 0.5);
+  --today-glow: rgba(56, 189, 248, 0.55);
   --today-number: #7dd3fc;
 }
