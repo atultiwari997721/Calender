@@ -17,6 +17,11 @@
   
   --border-color: rgba(229, 231, 235, 0.5);
   
+  --today-border: #2563eb;
+  --today-bg: rgba(37, 99, 235, 0.12);
+  --today-glow: rgba(37, 99, 235, 0.45);
+  --today-number: #1d4ed8;
+  
   /* Typography */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --font-size-base: 16px;
@@ -55,4 +60,8 @@
   --text-muted: #6b7280;
   --border-color: rgba(75, 85, 99, 0.5);
   --sunday-bg: rgba(239, 68, 68, 0.1);
+  --today-border: #38bdf8;
+  --today-bg: rgba(56, 189, 248, 0.18);
+  --today-glow: rgba(56, 189, 248, 0.5);
+  --today-number: #7dd3fc;
 }
