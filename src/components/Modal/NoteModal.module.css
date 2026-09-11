@@ -75,8 +75,8 @@
 
 .textarea:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.25);
-  background-color: rgba(255,255,255,0.8);
+  box-shadow: 0 0 0 2px rgba(1, 125, 189, 0.25);
+  background-color: rgba(255,255,255,0.85);
 }
 
 .footer {

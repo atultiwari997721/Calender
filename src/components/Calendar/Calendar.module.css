@@ -98,9 +98,9 @@
 }
 
 .today {
-  border: 3px solid var(--today-border, #2563eb) !important;
-  box-shadow: 0 0 0 1px var(--today-border, #2563eb), 0 0 12px var(--today-glow, rgba(37, 99, 235, 0.45)) !important;
-  background: var(--today-bg, rgba(37, 99, 235, 0.12)) !important;
+  border: 3px solid var(--today-border, #f59e0b) !important;
+  box-shadow: 0 0 0 1px var(--today-border, #f59e0b), 0 0 16px var(--today-glow, rgba(245, 158, 11, 0.55)) !important;
+  background: var(--today-bg, rgba(254, 203, 76, 0.2)) !important;
   font-weight: 700;
   position: relative;
   z-index: 2;
@@ -108,35 +108,35 @@
 
 .today .dayNumber {
   font-weight: 800;
-  color: var(--today-number, #1d4ed8);
+  color: var(--today-number, #b45309);
 }
 
 .today:hover {
-  border: 3px solid var(--today-border, #2563eb) !important;
-  box-shadow: 0 0 0 1px var(--today-border, #2563eb), 0 4px 16px var(--today-glow, rgba(37, 99, 235, 0.55)) !important;
+  border: 3px solid var(--today-border, #f59e0b) !important;
+  box-shadow: 0 0 0 1px var(--today-border, #f59e0b), 0 4px 18px var(--today-glow, rgba(245, 158, 11, 0.65)) !important;
 }
 
 .sunday {
   color: var(--sunday-color);
   background: var(--sunday-bg);
-  border-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(190, 18, 60, 0.25);
 }
 
 .saturday {
-  background: rgba(240, 164, 102, 0.15); /* Yellow-400 with opacity */
-  border: 1px solid rgba(250, 204, 21, 0.2);
+  background: rgba(254, 203, 76, 0.18); /* Warm Diya Gold */
+  border: 1px solid rgba(228, 175, 61, 0.35);
 }
 
 .holiday {
   color: var(--sunday-color);
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(190, 18, 60, 0.08);
+  border: 1px solid rgba(190, 18, 60, 0.25);
 }
 
 .academicEvent {
-  background: rgba(2, 132, 199, 0.18);
-  border: 1px solid rgba(2, 132, 199, 0.35);
-  color: var(--accent-color);
+  background: rgba(1, 125, 189, 0.12); /* Moonlight ray blue */
+  border: 1px solid rgba(1, 125, 189, 0.32);
+  color: var(--primary-color);
 }
 
 .academicText {

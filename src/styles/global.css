@@ -18,19 +18,19 @@ body {
   align-items: center;
   padding: var(--spacing-md);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(15, 118, 110, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(2, 132, 199, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
+    radial-gradient(at 0% 15%, rgba(254, 203, 76, 0.22) 0px, transparent 55%),
+    radial-gradient(at 100% 20%, rgba(1, 125, 189, 0.16) 0px, transparent 55%),
+    radial-gradient(at 50% 100%, rgba(217, 119, 6, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(1, 136, 196, 0.08) 0px, transparent 50%);
   background-attachment: fixed;
 }
 
 body.dark-mode {
   background-image: 
-    radial-gradient(at 0% 0%, rgba(15, 118, 110, 0.18) 0px, transparent 55%),
-    radial-gradient(at 100% 0%, rgba(2, 132, 199, 0.18) 0px, transparent 55%),
-    radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.14) 0px, transparent 55%),
-    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.12) 0px, transparent 55%);
+    radial-gradient(at 0% 25%, rgba(254, 203, 76, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 15%, rgba(1, 125, 189, 0.24) 0px, transparent 55%),
+    radial-gradient(at 50% 100%, rgba(228, 175, 61, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
 }
 
 #root {
