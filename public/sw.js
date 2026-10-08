@@ -1,14 +1,17 @@
-const CACHE_NAME = 'college-calendar-v1';
+const CACHE_NAME = 'panchang-v3';
 
+// Core shell assets to precache immediately on install
 const STATIC_PRECACHE = [
   '/',
   '/index.html',
+  '/atultiwari',
+  '/dates',
   '/manifest.json',
   '/Logo_Panchang.png',
   '/vite.svg'
 ];
 
-// 1. Install event: Pre-cache shell assets
+// 1. Install event: Pre-cache shell assets & skip waiting immediately
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -17,7 +20,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 2. Activate event: Clean up previous cache versions
+// 2. Activate event: Clean up previous cache versions & claim clients immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -32,7 +35,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. Fetch event: Cache-first / Stale-While-Revalidate with SPA navigation fallback
+// 3. Fetch event: Ultra-fast Stale-While-Revalidate for navigation, Cache-First for assets
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
@@ -41,47 +44,80 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
-  // Ignore non-http(s) schemes (like chrome-extension://)
+  // Ignore non-http(s) schemes (e.g., chrome-extension://)
   if (!url.protocol.startsWith('http')) return;
 
-  // Navigation requests (HTML pages / SPA routes like /atultiwari, /dates, /)
+  // A. Navigation requests (Opening the app, refreshing, SPA routes)
+  // STRATEGY: Instant Cache Return with Background Revalidation (Stale-While-Revalidate)
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
-        .then((networkResponse) => {
-          // Store copy in cache
-          const copy = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+      (async () => {
+        // Look up cache first for instantaneous startup (< 20ms)
+        const cachedResponse =
+          (await caches.match(request)) ||
+          (await caches.match('/index.html')) ||
+          (await caches.match('/atultiwari')) ||
+          (await caches.match('/'));
+
+        // Background network revalidation to keep content always up-to-date
+        const networkFetchPromise = fetch(request)
+          .then(async (networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const cache = await caches.open(CACHE_NAME);
+              cache.put(request, networkResponse.clone());
+              cache.put('/index.html', networkResponse.clone());
+            }
+            return networkResponse;
+          })
+          .catch(() => null);
+
+        // If cached response exists, return it IMMEDIATELY for super fast app launch!
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        // If not yet in cache (first time load), wait for network
+        const networkResponse = await networkFetchPromise;
+        if (networkResponse) {
           return networkResponse;
-        })
-        .catch(async () => {
-          // Offline fallback: serve cached route or cached /index.html
-          const cachedResponse = await caches.match(request);
-          if (cachedResponse) return cachedResponse;
-          return caches.match('/index.html') || caches.match('/');
-        })
+        }
+
+        // Offline fallback
+        return (await caches.match('/index.html')) || (await caches.match('/'));
+      })()
     );
     return;
   }
 
-  // Static assets (JS, CSS, Images, Fonts)
+  // B. Static assets: JS, CSS, images, fonts, icons
+  // STRATEGY: Cache-First with Dynamic Cache Population
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      // Background fetch to update cache (Stale-While-Revalidate)
-      const fetchPromise = fetch(request)
-        .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-            const copy = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          }
-          return networkResponse;
-        })
-        .catch(() => {
-          // Network failed; cachedResponse will be used if available
-        });
+    caches.match(request).then(async (cachedResponse) => {
+      if (cachedResponse) {
+        // Ultra-fast instant response from local cache!
+        return cachedResponse;
+      }
 
-      // Return cached response immediately if exists, otherwise wait for network
-      return cachedResponse || fetchPromise;
+      // Asset not yet cached; fetch from network and store in cache
+      try {
+        const networkResponse = await fetch(request);
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
+          });
+        }
+        return networkResponse;
+      } catch {
+        return cachedResponse;
+      }
     })
   );
+});
+
+// 4. Message listener for instant updates
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });

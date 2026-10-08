@@ -5,14 +5,32 @@
     <link rel="icon" type="image/png" href="/Logo_Panchang.png" />
     <link rel="apple-touch-icon" href="/Logo_Panchang.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#017dbd" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="College TT" />
-    <meta name="description" content="View College Calendar, Timetable, and Academic Dates offline anytime." />
-    <title>IPS Academy - Calendar & Time Table</title>
+    <meta name="apple-mobile-web-app-title" content="Panchang" />
+    <meta name="application-name" content="Panchang" />
+    <meta name="description" content="Panchang - College Calendar, Timetable, and Academic Dates offline anytime." />
+    <!-- Performance Hints -->
+    <link rel="preload" href="/Logo_Panchang.png" as="image" />
+    <title>Panchang - College Calendar & Time Table</title>
+    <style>
+      /* Instant Splash / Background to eliminate white flash */
+      html, body {
+        background-color: #fdfaf4;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body.dark-mode {
+        background-color: #090c14;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

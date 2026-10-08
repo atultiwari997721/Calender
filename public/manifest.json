@@ -1,14 +1,23 @@
 {
-  "name": "IPS Academy Calendar & TimeTable",
-  "short_name": "College TT",
-  "description": "View College Calendar, Timetable, and Academic Dates offline",
-  "start_url": "/",
+  "name": "Panchang",
+  "short_name": "Panchang",
+  "description": "Panchang - College Calendar, Timetable and Academic Dates offline",
+  "start_url": "/atultiwari?source=pwa",
   "scope": "/",
+  "id": "/atultiwari",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait",
   "background_color": "#fdfaf4",
   "theme_color": "#017dbd",
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "/Logo_Panchang.png",
@@ -20,6 +29,44 @@
       "src": "/vite.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "College Time Table",
+      "short_name": "Time Table",
+      "description": "Quick access to College Timetable",
+      "url": "/atultiwari?source=pwa",
+      "icons": [
+        {
+          "src": "/Logo_Panchang.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Academic Calendar",
+      "short_name": "Calendar",
+      "description": "View Monthly Calendar & Notes",
+      "url": "/?source=pwa",
+      "icons": [
+        {
+          "src": "/Logo_Panchang.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Important Dates",
+      "short_name": "Dates",
+      "description": "View Academic Milestones & Exams",
+      "url": "/dates?source=pwa",
+      "icons": [
+        {
+          "src": "/Logo_Panchang.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

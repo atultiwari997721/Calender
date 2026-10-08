@@ -8,24 +8,40 @@ import { timeTable } from '../../data/timeTable';
 import { holidays } from '../../data/holidays';
 
 const TimeTablePage = () => {
-  const [selectedDaySchedule, setSelectedDaySchedule] = useState(null);
+  const [selectedDaySchedule, setSelectedDaySchedule] = useState(() => {
+    const today = new Date();
+    const dayName = format(today, 'EEEE');
+    const dateKey = format(today, 'yyyy-MM-dd');
+    const schedule = timeTable[dayName] || [];
+    let holiday = holidays[dateKey];
+    if (dayName === 'Sunday') {
+      holiday = holiday ? `Sunday | ${holiday}` : 'Sunday';
+    }
+    return {
+      day: dayName,
+      date: today,
+      schedule: schedule,
+      holiday: holiday
+    };
+  });
   const [selectedLectureSlot, setSelectedLectureSlot] = useState(null);
 
   const scheduleRef = React.useRef(null);
+  const isUserInteraction = React.useRef(false);
 
   React.useEffect(() => {
-    if (selectedDaySchedule && scheduleRef.current) {
+    if (isUserInteraction.current && selectedDaySchedule && scheduleRef.current) {
       scheduleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      isUserInteraction.current = false;
     }
   }, [selectedDaySchedule]);
 
   const handleDateSelect = (date) => {
+    isUserInteraction.current = true;
     const dayName = format(date, 'EEEE'); // 'Monday', 'Tuesday', etc.
     const dateKey = format(date, 'yyyy-MM-dd');
     const schedule = timeTable[dayName] || [];
     let holiday = holidays[dateKey];
-    
-    console.log("Date Selected:", dateKey, dayName, "Holiday:", holiday);
     
     // Check for Sunday
     if (dayName === 'Sunday') {
@@ -39,7 +55,7 @@ const TimeTablePage = () => {
     setSelectedDaySchedule({ 
       day: dayName, 
       date: date, 
-      schedule: schedule,
+      schedule: schedule, 
       holiday: holiday 
     });
   };
