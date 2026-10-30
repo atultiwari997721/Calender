@@ -43,3 +43,294 @@ export const timeTable = {
     { time: 'ALL DAY', subject: 'HOLIDAY', type: 'Holiday' }
   ]
 };
+
+// Date-specific schedules for exams and special dates
+export const dateSpecificSchedules = {
+  // === Mid Semester Test II (MST-II) (02 Nov - 04 Nov 2026) ===
+  '2026-11-02': [
+    {
+      time: '09:45 AM - 11:30 AM',
+      subject: 'PCC CL 10 - Database Management System (DBMS)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'PCC CL 10'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'PCC CL 11 - Foundations of Machine Learning (FML)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'PCC CL 11'
+    }
+  ],
+  '2026-11-03': [
+    {
+      time: '09:45 AM - 11:15 AM',
+      subject: 'PEC CL 01 (D) - Information Storage Management (ISM)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'PEC CL 01 (D)'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'PCC CL 12 - Neural Network (NN)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'PCC CL 12'
+    }
+  ],
+  '2026-11-04': [
+    {
+      time: '09:45 AM - 11:15 AM',
+      subject: 'IFC EC01 - Sensors and Automation (S&A)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'IFC EC01'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'HSMC HS06 - Business Communication (BC)',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'HSMC HS06'
+    }
+  ],
+
+  // === Remedial MST (12 Nov - 14 Nov 2026) ===
+  '2026-11-12': [
+    {
+      time: '09:45 AM - 11:15 AM',
+      subject: 'PCC CL 10 - Database Management System (DBMS)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'PCC CL 10'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'PCC CL 11 - Foundations of Machine Learning (FML)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'PCC CL 11'
+    }
+  ],
+  '2026-11-13': [
+    {
+      time: '09:45 AM - 11:15 AM',
+      subject: 'PCC CL 12 - Neural Network (NN)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'PCC CL 12'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'PEC CL 01 (D) - Information Storage Management (ISM)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'PEC CL 01 (D)'
+    }
+  ],
+  '2026-11-14': [
+    {
+      time: '09:45 AM - 11:15 AM',
+      subject: 'HSMC HS06 - Business Communication (BC)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'HSMC HS06'
+    },
+    {
+      time: '11:45 AM - 01:15 PM',
+      subject: 'IFC EC01 - Sensors and Automation (S&A)',
+      type: 'Exam',
+      examType: 'Remedial MST',
+      code: 'IFC EC01'
+    }
+  ],
+
+  // === End Semester Examination December - 2026 ===
+  '2026-11-18': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'PCC-CL10/AL10 - Database Management System (DBMS)',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'PCC-CL10/AL10'
+    }
+  ],
+  '2026-11-23': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'PCC-CL11/AL11 - Foundations of Machine Learning (FML)',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'PCC-CL11/AL11'
+    }
+  ],
+  '2026-11-27': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'PCC-CL12/AL12 - Neural Network (NN)',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'PCC-CL12/AL12'
+    }
+  ],
+  '2026-12-01': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'PEC-CL01(D) - Information Storage Management / Cyber Security',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'PEC-CL01(D)'
+    }
+  ],
+  '2026-12-04': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'HSMC-HS06 - Business Communication (BC)',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'HSMC-HS06'
+    }
+  ],
+  '2026-12-07': [
+    {
+      time: '10:00 AM - 01:00 PM',
+      subject: 'IFC-EC01 - Sensors and Automation (S&A)',
+      type: 'Exam',
+      examType: 'End Sem Theory Exam',
+      code: 'IFC-EC01'
+    }
+  ]
+};
+
+// Structured exam timetable data for dedicated UI reference cards
+export const examTimetables = {
+  mst2: {
+    title: 'Mid Semester Test II (MST-II)',
+    batch: 'B.Tech III Yr V Sem (CL T1+T2+T3)',
+    datesRange: '02 Nov - 04 Nov 2026',
+    schedule: [
+      {
+        date: '2026-11-02',
+        dateDisplay: '02/11/2026',
+        day: 'Monday',
+        slots: [
+          { time: '09:45 AM - 11:30 AM', code: 'PCC CL 10', subject: 'Database Management System' },
+          { time: '11:45 AM - 01:15 PM', code: 'PCC CL 11', subject: 'Foundations of Machine Learning' }
+        ]
+      },
+      {
+        date: '2026-11-03',
+        dateDisplay: '03/11/2026',
+        day: 'Tuesday',
+        slots: [
+          { time: '09:45 AM - 11:15 AM', code: 'PEC CL 01 (D)', subject: 'Information Storage Management' },
+          { time: '11:45 AM - 01:15 PM', code: 'PCC CL 12', subject: 'Neural Network' }
+        ]
+      },
+      {
+        date: '2026-11-04',
+        dateDisplay: '04/11/2026',
+        day: 'Wednesday',
+        slots: [
+          { time: '09:45 AM - 11:15 AM', code: 'IFC EC01', subject: 'Sensors and Automation' },
+          { time: '11:45 AM - 01:15 PM', code: 'HSMC HS06', subject: 'Business Communication' }
+        ]
+      }
+    ]
+  },
+  remedial: {
+    title: 'Remedial Mid Semester Test (MST)',
+    batch: 'B.Tech III Yr V Sem (CL T1+T2+T3)',
+    datesRange: '12 Nov - 14 Nov 2026',
+    schedule: [
+      {
+        date: '2026-11-12',
+        dateDisplay: '12/11/2026',
+        day: 'Thursday',
+        slots: [
+          { time: '09:45 AM - 11:15 AM', code: 'PCC CL 10', subject: 'Database Management System' },
+          { time: '11:45 AM - 01:15 PM', code: 'PCC CL 11', subject: 'Foundations of Machine Learning' }
+        ]
+      },
+      {
+        date: '2026-11-13',
+        dateDisplay: '13/11/2026',
+        day: 'Friday',
+        slots: [
+          { time: '09:45 AM - 11:15 AM', code: 'PCC CL 12', subject: 'Neural Network' },
+          { time: '11:45 AM - 01:15 PM', code: 'PEC CL 01 (D)', subject: 'Information Storage Management' }
+        ]
+      },
+      {
+        date: '2026-11-14',
+        dateDisplay: '14/11/2026',
+        day: 'Saturday',
+        slots: [
+          { time: '09:45 AM - 11:15 AM', code: 'HSMC HS06', subject: 'Business Communication' },
+          { time: '11:45 AM - 01:15 PM', code: 'IFC EC01', subject: 'Sensors and Automation' }
+        ]
+      }
+    ]
+  },
+  endSem: {
+    title: 'End Semester Examination December - 2026',
+    institute: 'IPS ACADEMY • Institute of Engineering & Science, Indore',
+    subText: 'A UGC Autonomous Institute, Affiliated to RGPV, Bhopal',
+    examName: 'Exam : B.Tech (All Students) V Semester',
+    branch: 'Branch : CL / AL',
+    timing: 'Time : 10:00 AM to 01:00 PM',
+    datesRange: '18 Nov - 07 Dec 2026',
+    pdfUrl: 'https://ies.ipsacademy.org/wp-content/uploads/2026/10/5th-Sem-Time-Table-New-Scheme.pdf',
+    schedule: [
+      {
+        date: '2026-11-18',
+        dateDisplay: '18/11/2026',
+        day: 'Wednesday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'PCC-CL10/AL10',
+        subject: 'Database Management System'
+      },
+      {
+        date: '2026-11-23',
+        dateDisplay: '23/11/2026',
+        day: 'Monday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'PCC-CL11/AL11',
+        subject: 'Foundations of Machine Learning'
+      },
+      {
+        date: '2026-11-27',
+        dateDisplay: '27/11/2026',
+        day: 'Friday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'PCC-CL12/AL12',
+        subject: 'Neural Network'
+      },
+      {
+        date: '2026-12-01',
+        dateDisplay: '01/12/2026',
+        day: 'Tuesday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'PEC-CL01(D)',
+        subject: 'Information Storage Management / C. Cyber Security'
+      },
+      {
+        date: '2026-12-04',
+        dateDisplay: '04/12/2026',
+        day: 'Friday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'HSMC-HS06',
+        subject: 'Business Communication'
+      },
+      {
+        date: '2026-12-07',
+        dateDisplay: '07/12/2026',
+        day: 'Monday',
+        time: '10:00 AM - 01:00 PM',
+        code: 'IFC-EC01',
+        subject: 'Sensors and Automation'
+      }
+    ]
+  }
+};

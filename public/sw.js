@@ -1,4 +1,4 @@
-const CACHE_NAME = 'panchang-v3';
+const CACHE_NAME = 'panchang-v4';
 
 // Core shell assets to precache immediately on install
 const STATIC_PRECACHE = [

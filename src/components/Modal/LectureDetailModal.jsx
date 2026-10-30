@@ -21,19 +21,26 @@ const FACULTY_MAP = {
 
 const SUBJECT_MAP = {
   'DBMS': { code: 'PCC CL10', name: 'Database Management System (DBMS)', defaultFaculty: ['AV', 'VKG'] },
+  'DATABASE MANAGEMENT SYSTEM': { code: 'PCC CL10', name: 'Database Management System (DBMS)', defaultFaculty: ['AV', 'VKG'] },
   'FML': { code: 'PCC CL11', name: 'Foundations of Machine Learning (FML)', defaultFaculty: ['YY'] },
+  'FOUNDATIONS OF MACHINE LEARNING': { code: 'PCC CL11', name: 'Foundations of Machine Learning (FML)', defaultFaculty: ['YY'] },
   'NN': { code: 'PCC CL12', name: 'Neural Network (NN)', defaultFaculty: ['PST'] },
+  'NEURAL NETWORK': { code: 'PCC CL12', name: 'Neural Network (NN)', defaultFaculty: ['PST'] },
   'ISM': { code: 'PEC CL01', name: 'Elective-I [Information Storage Management] (ISM)', defaultFaculty: ['AD'] },
+  'INFORMATION STORAGE MANAGEMENT': { code: 'PEC CL01', name: 'Elective-I [Information Storage Management] (ISM)', defaultFaculty: ['AD'] },
   'JS': { code: 'SBC CL02', name: 'Programming with Java Script (JS)', defaultFaculty: ['ML'] },
   'BC': { code: 'HSMC HS06', name: 'HSSOC- II [Business Communication] (BC)', defaultFaculty: ['RB'] },
+  'BUSINESS COMMUNICATION': { code: 'HSMC HS06', name: 'HSSOC- II [Business Communication] (BC)', defaultFaculty: ['RB'] },
   'S&A': { code: 'IFC EC01', name: 'IFC-II [Sensors and Automation] (S&A)', defaultFaculty: ['MRS'] },
+  'SENSORS AND AUTOMATION': { code: 'IFC EC01', name: 'IFC-II [Sensors and Automation] (S&A)', defaultFaculty: ['MRS'] },
+  'CYBER SECURITY': { code: 'PEC CL01', name: 'Cyber Security', defaultFaculty: ['VD'] },
   'ES': { code: 'MLC MLC03', name: 'Environmental Studies (ES)', defaultFaculty: ['DKA'] },
   'MINI PROJECT': { code: 'PROJ CL02', name: 'Mini Project', defaultFaculty: ['VD'] },
   'INTERNSHIP': { code: 'PROJ', name: 'Internship-I', defaultFaculty: ['VD'] },
   'SPOKEN TUTORIAL': { code: 'SBC CL02', name: 'Spoken Tutorial (Programming with JS)', defaultFaculty: ['ML'] },
 };
 
-function parseSubSlot(part) {
+function parseSubSlot(part, slot) {
   const cleanPart = part.trim();
   
   // 1. Detect Room/Location (e.g. N-108, N-109, N-007, N-205, N-107)
@@ -77,7 +84,9 @@ function parseSubSlot(part) {
   let subjectInfo = null;
   let subjectType = 'Lecture';
   
-  if (cleanPart.toLowerCase().includes('lab')) {
+  if (slot?.type === 'Exam' || cleanPart.toLowerCase().includes('exam')) {
+    subjectType = 'Exam';
+  } else if (cleanPart.toLowerCase().includes('lab')) {
     subjectType = 'Lab';
   } else if (cleanPart.toLowerCase().includes('project')) {
     subjectType = 'Project';
@@ -142,20 +151,21 @@ const LectureDetailModal = ({ slot, dayName, onClose }) => {
 
   // Split multi-subjects (e.g. ML Lab(A) / DBMS Lab(B))
   const parts = slot.subject.split('/');
-  const subSlots = parts.map(part => parseSubSlot(part));
+  const subSlots = parts.map(part => parseSubSlot(part, slot));
 
   // Determine overall type badge
-  const primaryType = subSlots[0]?.subjectType || slot.type || 'Lecture';
+  const isExam = slot.type === 'Exam';
+  const primaryType = isExam ? (slot.examType || 'Exam') : (subSlots[0]?.subjectType || slot.type || 'Lecture');
 
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.header}>
           <div className={styles.headerTitleGroup}>
-            <span className={`${styles.typeBadge} ${styles[primaryType.toLowerCase()]}`}>
+            <span className={`${styles.typeBadge} ${isExam ? styles.exam : (styles[primaryType.toLowerCase()] || styles.lecture)}`}>
               {primaryType}
             </span>
-            <h2 className={styles.modalTitle}>Lecture Details</h2>
+            <h2 className={styles.modalTitle}>{isExam ? 'Examination Details' : 'Lecture Details'}</h2>
           </div>
           <button className={styles.closeButton} onClick={onClose} aria-label="Close details">
             <X size={20} />

@@ -95,6 +95,13 @@
   border: 1px solid rgba(107, 114, 128, 0.2);
 }
 
+.typeBadge.exam {
+  background: rgba(1, 125, 189, 0.15);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  font-weight: 700;
+}
+
 .closeButton {
   color: var(--text-secondary);
   padding: var(--spacing-xs);

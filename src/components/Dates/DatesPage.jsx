@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { academicCalendar } from '../../data/academicCalendar';
 import styles from './DatesPage.module.css';
-import { Search, Calendar as CalendarIcon, FileText, Printer, Award, BookOpen, Clock, Tag } from 'lucide-react';
+import { Search, Calendar as CalendarIcon, FileText, Printer, Award, BookOpen, Clock, Tag, Download, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const DatesPage = () => {
@@ -178,6 +178,30 @@ const DatesPage = () => {
                     </div>
                     
                     <h3 className={styles.eventTitle}>{item.event}</h3>
+                    
+                    {item.pdfUrl && (
+                      <div style={{ marginTop: '10px' }}>
+                        <a 
+                          href={item.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            background: 'var(--primary-color)',
+                            color: '#ffffff',
+                            padding: '6px 12px',
+                            borderRadius: '6px',
+                            fontSize: '0.82rem',
+                            fontWeight: '600',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          <Download size={14} /> Download Official Time Table PDF <ExternalLink size={12} />
+                        </a>
+                      </div>
+                    )}
                     
                     <div className={styles.eventSubdetails}>
                       <span className={styles.eventStartEnd}>

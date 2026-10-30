@@ -49,21 +49,28 @@ const ScheduleDisplay = ({ schedule, dayName, holiday, onSlotClick }) => {
       )}
       <h3 className={styles.dayTitle}>{dayName}'s Schedule</h3>
       <div className={styles.timeline}>
-        {schedule.map((slot, index) => (
-          <div 
-            key={index} 
-            className={styles.slot}
-            onClick={() => onSlotClick && onSlotClick(slot)}
-            style={{ cursor: 'pointer' }}
-            title="Click to view details"
-          >
-            <div className={styles.time}>{slot.time}</div>
-            <div className={styles.info}>
-              <div className={styles.subject}>{slot.subject}</div>
-              <div className={styles.type}>{slot.type}</div>
+        {schedule.map((slot, index) => {
+          const isExam = slot.type === 'Exam';
+          return (
+            <div 
+              key={index} 
+              className={`${styles.slot} ${isExam ? styles.slotExam : ''}`}
+              onClick={() => onSlotClick && onSlotClick(slot)}
+              style={{ cursor: 'pointer' }}
+              title="Click to view details"
+            >
+              <div className={styles.time}>{slot.time}</div>
+              <div className={styles.info}>
+                <div className={styles.subject}>{slot.subject}</div>
+                {slot.examType ? (
+                  <span className={styles.examBadge}>📝 {slot.examType}</span>
+                ) : (
+                  <div className={styles.type}>{slot.type}</div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { format } from 'date-fns';
+import React, { useState, useRef, useEffect } from 'react';
+import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { FileText, Download, Calendar as CalendarIcon, ExternalLink, Award, Clock, ArrowRight } from 'lucide-react';
 import Calendar from '../Calendar/Calendar';
 import ScheduleDisplay from './ScheduleDisplay';
 import LectureDetailModal from '../Modal/LectureDetailModal';
-import { timeTable } from '../../data/timeTable';
+import { timeTable, dateSpecificSchedules, examTimetables } from '../../data/timeTable';
 import { holidays } from '../../data/holidays';
+import styles from './TimeTablePage.module.css';
 
 const TimeTablePage = () => {
   const [selectedDaySchedule, setSelectedDaySchedule] = useState(() => {
     const today = new Date();
     const dayName = format(today, 'EEEE');
     const dateKey = format(today, 'yyyy-MM-dd');
-    const schedule = timeTable[dayName] || [];
+    const schedule = dateSpecificSchedules[dateKey] || timeTable[dayName] || [];
     let holiday = holidays[dateKey];
     if (dayName === 'Sunday') {
       holiday = holiday ? `Sunday | ${holiday}` : 'Sunday';
@@ -24,12 +26,14 @@ const TimeTablePage = () => {
       holiday: holiday
     };
   });
+
   const [selectedLectureSlot, setSelectedLectureSlot] = useState(null);
+  const [activeExamTab, setActiveExamTab] = useState('mst2'); // 'mst2' | 'remedial' | 'endSem'
 
-  const scheduleRef = React.useRef(null);
-  const isUserInteraction = React.useRef(false);
+  const scheduleRef = useRef(null);
+  const isUserInteraction = useRef(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isUserInteraction.current && selectedDaySchedule && scheduleRef.current) {
       scheduleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       isUserInteraction.current = false;
@@ -40,7 +44,7 @@ const TimeTablePage = () => {
     isUserInteraction.current = true;
     const dayName = format(date, 'EEEE'); // 'Monday', 'Tuesday', etc.
     const dateKey = format(date, 'yyyy-MM-dd');
-    const schedule = timeTable[dayName] || [];
+    const schedule = dateSpecificSchedules[dateKey] || timeTable[dayName] || [];
     let holiday = holidays[dateKey];
     
     // Check for Sunday
@@ -60,19 +64,38 @@ const TimeTablePage = () => {
     });
   };
 
+  const jumpToExamDate = (isoDateStr) => {
+    const parsedDate = parseISO(isoDateStr);
+    handleDateSelect(parsedDate);
+  };
+
   return (
-    <div className="timetable-page-container" style={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '800px', margin: '0 auto', paddingTop: '60px' }}>
-      <h1 style={{ margin: '0 0 20px 0', color: 'var(--primary-color)', textAlign: 'center' }}>College Time Table</h1>
+    <div className="timetable-page-container" style={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '800px', margin: '0 auto', paddingTop: '40px' }}>
       
-      {/* We reuse Calendar but pass a custom handler if we refactor Calendar to accept it.
-          Currently Calendar handles its own state and modals. 
-          To reuse it effectively for this use case, we might need to modify Calendar.jsx to accept an onDateSelect prop 
-          that overrides the default behavior, OR we simply let the user click a date, ignore the note modal (or close it), 
-          and show the schedule below.
-          
-          For "Best UI", let's modify Calendar.jsx to accept a prop `onDateSelectOverride` which if present, 
-          prevents the default modal and calls this function instead.
-      */}
+      {/* Quick Official Announcement Notice Banner */}
+      <div className={styles.quickNotice}>
+        <div className={styles.noticeContent}>
+          <FileText size={28} color="var(--primary-color)" />
+          <div className={styles.noticeText}>
+            <h4>Official End Sem & MST Time Tables Announced</h4>
+            <p>B.Tech V Sem (CL/AL): MST-II (2-4 Nov), Remedial (12-14 Nov), End Sem (18 Nov-7 Dec)</p>
+          </div>
+        </div>
+        <a 
+          href="https://ies.ipsacademy.org/wp-content/uploads/2026/10/5th-Sem-Time-Table-New-Scheme.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.pdfBtn}
+        >
+          <Download size={16} /> Official End Sem PDF <ExternalLink size={14} />
+        </a>
+      </div>
+
+      <h1 style={{ margin: '0 0 20px 0', color: 'var(--primary-color)', textAlign: 'center' }}>
+        College Time Table
+      </h1>
+      
+      {/* Interactive Calendar view with day schedule click */}
       <Calendar onDateSelectOverride={handleDateSelect} />
 
       {selectedDaySchedule && (
@@ -94,6 +117,229 @@ const TimeTablePage = () => {
         />
       )}
 
+      {/* ============================================================== */}
+      {/* DEDICATED EXAM TIME TABLE SECTION (MST-II, REMEDIAL, END SEM) */}
+      {/* ============================================================== */}
+      <div className={styles.examSection}>
+        <div className={styles.sectionHeader}>
+          <div className={styles.mainTitle}>
+            <Award size={22} /> Examination Time Tables
+          </div>
+          <a 
+            href={examTimetables.endSem.pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pdfBtn}
+            title="Download Official 5th Sem Exam Schedule PDF from IPS Academy"
+          >
+            <FileText size={16} /> Download Official End Sem PDF <ExternalLink size={14} />
+          </a>
+        </div>
+
+        {/* Tab Buttons */}
+        <div className={styles.tabBar}>
+          <button 
+            className={`${styles.tabBtn} ${activeExamTab === 'mst2' ? styles.activeTab : ''}`}
+            onClick={() => setActiveExamTab('mst2')}
+          >
+            🎯 MST-II (02 - 04 Nov)
+          </button>
+          <button 
+            className={`${styles.tabBtn} ${activeExamTab === 'remedial' ? styles.activeTab : ''}`}
+            onClick={() => setActiveExamTab('remedial')}
+          >
+            🔄 Remedial MST (12 - 14 Nov)
+          </button>
+          <button 
+            className={`${styles.tabBtn} ${activeExamTab === 'endSem' ? styles.activeTab : ''}`}
+            onClick={() => setActiveExamTab('endSem')}
+          >
+            📋 End Sem Exam (18 Nov - 07 Dec)
+          </button>
+        </div>
+
+        {/* TAB 1: MST-II */}
+        {activeExamTab === 'mst2' && (
+          <div className={styles.examCard}>
+            <div className={styles.examMeta}>
+              <div className={styles.examMetaTitle}>{examTimetables.mst2.title}</div>
+              <div className={styles.examMetaSub}>{examTimetables.mst2.batch} • Dates: {examTimetables.mst2.datesRange}</div>
+            </div>
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Date & Day</th>
+                    <th>Time Slot</th>
+                    <th>Sub Code</th>
+                    <th>Subject Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {examTimetables.mst2.schedule.map((entry) => (
+                    <React.Fragment key={entry.date}>
+                      {entry.slots.map((slot, sIdx) => (
+                        <tr key={`${entry.date}-${sIdx}`}>
+                          {sIdx === 0 && (
+                            <td rowSpan={entry.slots.length} style={{ fontWeight: 600, borderRight: '1px solid var(--border-color)', verticalAlign: 'top' }}>
+                              <div>{entry.dateDisplay}</div>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
+                            </td>
+                          )}
+                          <td>
+                            <span className={styles.timeBadge}><Clock size={12} /> {slot.time}</span>
+                          </td>
+                          <td>
+                            <span className={styles.codeBadge}>{slot.code}</span>
+                          </td>
+                          <td style={{ fontWeight: 500 }}>{slot.subject}</td>
+                          {sIdx === 0 && (
+                            <td rowSpan={entry.slots.length} style={{ verticalAlign: 'middle', borderLeft: '1px solid var(--border-color)' }}>
+                              <button 
+                                className={styles.viewDateBtn}
+                                onClick={() => jumpToExamDate(entry.date)}
+                                title="Open this day in the interactive daily view"
+                              >
+                                View Day <ArrowRight size={12} />
+                              </button>
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 2: Remedial MST */}
+        {activeExamTab === 'remedial' && (
+          <div className={styles.examCard}>
+            <div className={styles.examMeta}>
+              <div className={styles.examMetaTitle}>{examTimetables.remedial.title}</div>
+              <div className={styles.examMetaSub}>{examTimetables.remedial.batch} • Dates: {examTimetables.remedial.datesRange}</div>
+            </div>
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Date & Day</th>
+                    <th>Time Slot</th>
+                    <th>Sub Code</th>
+                    <th>Subject Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {examTimetables.remedial.schedule.map((entry) => (
+                    <React.Fragment key={entry.date}>
+                      {entry.slots.map((slot, sIdx) => (
+                        <tr key={`${entry.date}-${sIdx}`}>
+                          {sIdx === 0 && (
+                            <td rowSpan={entry.slots.length} style={{ fontWeight: 600, borderRight: '1px solid var(--border-color)', verticalAlign: 'top' }}>
+                              <div>{entry.dateDisplay}</div>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
+                            </td>
+                          )}
+                          <td>
+                            <span className={styles.timeBadge}><Clock size={12} /> {slot.time}</span>
+                          </td>
+                          <td>
+                            <span className={styles.codeBadge}>{slot.code}</span>
+                          </td>
+                          <td style={{ fontWeight: 500 }}>{slot.subject}</td>
+                          {sIdx === 0 && (
+                            <td rowSpan={entry.slots.length} style={{ verticalAlign: 'middle', borderLeft: '1px solid var(--border-color)' }}>
+                              <button 
+                                className={styles.viewDateBtn}
+                                onClick={() => jumpToExamDate(entry.date)}
+                                title="Open this day in the interactive daily view"
+                              >
+                                View Day <ArrowRight size={12} />
+                              </button>
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: End Semester Exam */}
+        {activeExamTab === 'endSem' && (
+          <div className={styles.examCard}>
+            <div className={styles.examMeta}>
+              <div className={styles.examMetaTitle}>{examTimetables.endSem.title}</div>
+              <div className={styles.examMetaSub}>
+                <strong>{examTimetables.endSem.institute}</strong> • {examTimetables.endSem.subText}
+              </div>
+              <div style={{ fontSize: '0.86rem', color: 'var(--primary-color)', fontWeight: 600, marginTop: '2px' }}>
+                {examTimetables.endSem.examName} • {examTimetables.endSem.branch} • {examTimetables.endSem.timing}
+              </div>
+            </div>
+
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Date & Day</th>
+                    <th>Exam Time</th>
+                    <th>Sub Code</th>
+                    <th>Subject Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {examTimetables.endSem.schedule.map((entry) => (
+                    <tr key={entry.date}>
+                      <td style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>
+                        <div>{entry.dateDisplay}</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
+                      </td>
+                      <td>
+                        <span className={styles.timeBadge}><Clock size={12} /> {entry.time}</span>
+                      </td>
+                      <td>
+                        <span className={styles.codeBadge}>{entry.code}</span>
+                      </td>
+                      <td style={{ fontWeight: 500 }}>{entry.subject}</td>
+                      <td>
+                        <button 
+                          className={styles.viewDateBtn}
+                          onClick={() => jumpToExamDate(entry.date)}
+                          title="Open this day in the interactive daily view"
+                        >
+                          View Day <ArrowRight size={12} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '14px' }}>
+              <a 
+                href={examTimetables.endSem.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.pdfBtn}
+              >
+                <Download size={16} /> Download Complete 5th Sem Exam PDF Scheme <ExternalLink size={14} />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Academic Calendar Jul-Dec 2026 Table */}
       <div style={{ 
         marginTop: '30px', 
         width: '100%', 
@@ -117,8 +363,9 @@ const TimeTablePage = () => {
                 { event: 'Registration (5th Sem)', date: '1-4 July 2026' },
                 { event: 'Commencement of Classes', date: '6 July 2026' },
                 { event: 'MST-I', date: '10-12 Sept 2026' },
-                { event: 'MST-II', date: '2-4 Nov 2026' },
-                { event: 'Commencement of End Sem Exam', date: '17 Nov 2026' },
+                { event: 'MST-II (DBMS, FML, ISM, NN, S&A, BC)', date: '2-4 Nov 2026' },
+                { event: 'Remedial MST (All Subjects)', date: '12-14 Nov 2026' },
+                { event: 'Commencement of End Sem Exam (Theory)', date: '17 Nov 2026 (Papers: 18 Nov - 7 Dec)' },
                 { event: 'Commencement of Next Sem (6th Sem)', date: '10 Dec 2026' },
               ].map((item, index) => (
                 <tr key={index} style={{ borderBottom: '1px solid var(--border-color)' }}>
@@ -136,6 +383,7 @@ const TimeTablePage = () => {
         </div>
       </div>
 
+      {/* Subject & Faculty Reference */}
       <div style={{ 
         marginTop: '30px', 
         width: '100%', 
