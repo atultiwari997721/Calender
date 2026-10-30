@@ -42,9 +42,24 @@
   transition: all 0.2s ease;
 }
 
+.pdfBtnMst2 {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35) !important;
+}
+
+.pdfBtnRemedial {
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%) !important;
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.35) !important;
+}
+
+.pdfBtnEndSem {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35) !important;
+}
+
 .pdfBtn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(1, 125, 189, 0.35);
+  filter: brightness(1.06);
   color: #ffffff;
 }
 
@@ -79,6 +94,24 @@
   color: var(--primary-color);
   border-bottom: 3px solid var(--primary-color);
   background: var(--bg-slot);
+}
+
+.activeTabMst2 {
+  color: #d97706 !important;
+  border-bottom: 3px solid #f59e0b !important;
+  background: rgba(245, 158, 11, 0.12) !important;
+}
+
+.activeTabRemedial {
+  color: #7e22ce !important;
+  border-bottom: 3px solid #9333ea !important;
+  background: rgba(147, 51, 234, 0.12) !important;
+}
+
+.activeTabEndSem {
+  color: #0284c7 !important;
+  border-bottom: 3px solid #0284c7 !important;
+  background: rgba(2, 132, 199, 0.12) !important;
 }
 
 .examCard {
@@ -186,6 +219,70 @@
 
 .viewDateBtn:hover {
   background: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Color-coded Exam Badges & Buttons */
+.codeBadgeMst2 {
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.18) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.timeBadgeMst2 {
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.14) !important;
+}
+
+.viewDateBtnMst2 {
+  color: #d97706;
+  border-color: #f59e0b;
+}
+
+.viewDateBtnMst2:hover {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+.codeBadgeRemedial {
+  color: #7e22ce;
+  background: rgba(147, 51, 234, 0.18) !important;
+  border: 1px solid rgba(147, 51, 234, 0.35);
+}
+
+.timeBadgeRemedial {
+  color: #9333ea;
+  background: rgba(147, 51, 234, 0.14) !important;
+}
+
+.viewDateBtnRemedial {
+  color: #9333ea;
+  border-color: #9333ea;
+}
+
+.viewDateBtnRemedial:hover {
+  background: #9333ea;
+  color: #ffffff;
+}
+
+.codeBadgeEndSem {
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.18) !important;
+  border: 1px solid rgba(2, 132, 199, 0.35);
+}
+
+.timeBadgeEndSem {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.14) !important;
+}
+
+.viewDateBtnEndSem {
+  color: #0284c7;
+  border-color: #0284c7;
+}
+
+.viewDateBtnEndSem:hover {
+  background: #0284c7;
   color: #ffffff;
 }
 

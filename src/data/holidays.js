@@ -66,9 +66,9 @@ export const holidays = {
   '2026-10-26': 'Maharishi Valmiki Jayanti',
 
   // November
-  '2026-11-02': 'MST-II: DBMS (9:45 AM) & FML (11:45 AM)',
-  '2026-11-03': 'MST-II: ISM (9:45 AM) & NN (11:45 AM)',
-  '2026-11-04': 'MST-II: S&A (9:45 AM) & BC (11:45 AM)',
+  '2026-11-02': 'MST-II: DBMS (9:45-11:30) & FML (9:45-11:15)',
+  '2026-11-03': 'MST-II: NN (11:45-1:15) & ISM (9:45-11:15)',
+  '2026-11-04': 'MST-II: BC (11:45-1:15) & S&A (9:45-11:15)',
   '2026-11-06': 'Diwali Holidays',
   '2026-11-07': 'Diwali Holidays',
   '2026-11-08': 'Diwali / Diwali Holidays',

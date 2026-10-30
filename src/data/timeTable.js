@@ -49,15 +49,15 @@ export const dateSpecificSchedules = {
   // === Mid Semester Test II (MST-II) (02 Nov - 04 Nov 2026) ===
   '2026-11-02': [
     {
-      time: '09:45 AM - 11:30 AM',
-      subject: 'PCC CL 10 - Database Management System (DBMS)',
+      time: '9:45AM-11:30AM',
+      subject: 'PCC CL 10 - Database Management System',
       type: 'Exam',
       examType: 'MST-II',
       code: 'PCC CL 10'
     },
     {
-      time: '11:45 AM - 01:15 PM',
-      subject: 'PCC CL 11 - Foundations of Machine Learning (FML)',
+      time: '9:45AM-11:15AM',
+      subject: 'PCC CL 11 - Foundations of Machine Learning',
       type: 'Exam',
       examType: 'MST-II',
       code: 'PCC CL 11'
@@ -65,34 +65,34 @@ export const dateSpecificSchedules = {
   ],
   '2026-11-03': [
     {
-      time: '09:45 AM - 11:15 AM',
-      subject: 'PEC CL 01 (D) - Information Storage Management (ISM)',
-      type: 'Exam',
-      examType: 'MST-II',
-      code: 'PEC CL 01 (D)'
-    },
-    {
-      time: '11:45 AM - 01:15 PM',
-      subject: 'PCC CL 12 - Neural Network (NN)',
+      time: '11:45AM-1:15 PM',
+      subject: 'PCC CL 12 - Neural Network',
       type: 'Exam',
       examType: 'MST-II',
       code: 'PCC CL 12'
+    },
+    {
+      time: '9:45AM-11:15AM',
+      subject: 'PEC CL 01 (D) - Information Storage Management',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'PEC CL 01 (D)'
     }
   ],
   '2026-11-04': [
     {
-      time: '09:45 AM - 11:15 AM',
-      subject: 'IFC EC01 - Sensors and Automation (S&A)',
-      type: 'Exam',
-      examType: 'MST-II',
-      code: 'IFC EC01'
-    },
-    {
-      time: '11:45 AM - 01:15 PM',
-      subject: 'HSMC HS06 - Business Communication (BC)',
+      time: '11:45AM-1:15 PM',
+      subject: 'HSMC HS06 - Business Communication',
       type: 'Exam',
       examType: 'MST-II',
       code: 'HSMC HS06'
+    },
+    {
+      time: '9:45AM-11:15AM',
+      subject: 'IFC EC01 - Sensors and Automation',
+      type: 'Exam',
+      examType: 'MST-II',
+      code: 'IFC EC01'
     }
   ],
 
@@ -209,32 +209,34 @@ export const examTimetables = {
     title: 'Mid Semester Test II (MST-II)',
     batch: 'B.Tech III Yr V Sem (CL T1+T2+T3)',
     datesRange: '02 Nov - 04 Nov 2026',
+    pdfUrl: 'https://ies.ipsacademy.org/wp-content/uploads/2026/10/MST-II-Exaination-time-table-july-dec-2026.pdf',
+    pdfButtonText: 'Download Official MST-II PDF',
     schedule: [
       {
         date: '2026-11-02',
-        dateDisplay: '02/11/2026',
+        dateDisplay: '2.11.26',
         day: 'Monday',
         slots: [
-          { time: '09:45 AM - 11:30 AM', code: 'PCC CL 10', subject: 'Database Management System' },
-          { time: '11:45 AM - 01:15 PM', code: 'PCC CL 11', subject: 'Foundations of Machine Learning' }
+          { time: '9:45AM-11:30AM', code: 'PCC CL 10', subject: 'Database Management System' },
+          { time: '9:45AM-11:15AM', code: 'PCC CL 11', subject: 'Foundations of Machine Learning' }
         ]
       },
       {
         date: '2026-11-03',
-        dateDisplay: '03/11/2026',
+        dateDisplay: '3.11.26',
         day: 'Tuesday',
         slots: [
-          { time: '09:45 AM - 11:15 AM', code: 'PEC CL 01 (D)', subject: 'Information Storage Management' },
-          { time: '11:45 AM - 01:15 PM', code: 'PCC CL 12', subject: 'Neural Network' }
+          { time: '11:45AM-1:15 PM', code: 'PCC CL 12', subject: 'Neural Network' },
+          { time: '9:45AM-11:15AM', code: 'PEC CL 01 (D)', subject: 'Information Storage Management' }
         ]
       },
       {
         date: '2026-11-04',
-        dateDisplay: '04/11/2026',
+        dateDisplay: '4.11.26',
         day: 'Wednesday',
         slots: [
-          { time: '09:45 AM - 11:15 AM', code: 'IFC EC01', subject: 'Sensors and Automation' },
-          { time: '11:45 AM - 01:15 PM', code: 'HSMC HS06', subject: 'Business Communication' }
+          { time: '11:45AM-1:15 PM', code: 'HSMC HS06', subject: 'Business Communication' },
+          { time: '9:45AM-11:15AM', code: 'IFC EC01', subject: 'Sensors and Automation' }
         ]
       }
     ]
@@ -243,6 +245,8 @@ export const examTimetables = {
     title: 'Remedial Mid Semester Test (MST)',
     batch: 'B.Tech III Yr V Sem (CL T1+T2+T3)',
     datesRange: '12 Nov - 14 Nov 2026',
+    pdfUrl: 'https://ies.ipsacademy.org/wp-content/uploads/2026/10/Remedial-mst-examination-time-table-july-dec-2026.pdf.pdf',
+    pdfButtonText: 'Download Official Remedial MST PDF',
     schedule: [
       {
         date: '2026-11-12',
@@ -282,6 +286,7 @@ export const examTimetables = {
     timing: 'Time : 10:00 AM to 01:00 PM',
     datesRange: '18 Nov - 07 Dec 2026',
     pdfUrl: 'https://ies.ipsacademy.org/wp-content/uploads/2026/10/5th-Sem-Time-Table-New-Scheme.pdf',
+    pdfButtonText: 'Download Official End Sem PDF',
     schedule: [
       {
         date: '2026-11-18',

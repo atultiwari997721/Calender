@@ -126,32 +126,38 @@ const TimeTablePage = () => {
             <Award size={22} /> Examination Time Tables
           </div>
           <a 
-            href={examTimetables.endSem.pdfUrl}
+            href={examTimetables[activeExamTab].pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.pdfBtn}
-            title="Download Official 5th Sem Exam Schedule PDF from IPS Academy"
+            className={`${styles.pdfBtn} ${
+              activeExamTab === 'mst2' 
+                ? styles.pdfBtnMst2 
+                : activeExamTab === 'remedial' 
+                  ? styles.pdfBtnRemedial 
+                  : styles.pdfBtnEndSem
+            }`}
+            title={`Download ${examTimetables[activeExamTab].title} PDF`}
           >
-            <FileText size={16} /> Download Official End Sem PDF <ExternalLink size={14} />
+            <Download size={16} /> {examTimetables[activeExamTab].pdfButtonText} <ExternalLink size={14} />
           </a>
         </div>
 
         {/* Tab Buttons */}
         <div className={styles.tabBar}>
           <button 
-            className={`${styles.tabBtn} ${activeExamTab === 'mst2' ? styles.activeTab : ''}`}
+            className={`${styles.tabBtn} ${activeExamTab === 'mst2' ? `${styles.activeTab} ${styles.activeTabMst2}` : ''}`}
             onClick={() => setActiveExamTab('mst2')}
           >
             🎯 MST-II (02 - 04 Nov)
           </button>
           <button 
-            className={`${styles.tabBtn} ${activeExamTab === 'remedial' ? styles.activeTab : ''}`}
+            className={`${styles.tabBtn} ${activeExamTab === 'remedial' ? `${styles.activeTab} ${styles.activeTabRemedial}` : ''}`}
             onClick={() => setActiveExamTab('remedial')}
           >
             🔄 Remedial MST (12 - 14 Nov)
           </button>
           <button 
-            className={`${styles.tabBtn} ${activeExamTab === 'endSem' ? styles.activeTab : ''}`}
+            className={`${styles.tabBtn} ${activeExamTab === 'endSem' ? `${styles.activeTab} ${styles.activeTabEndSem}` : ''}`}
             onClick={() => setActiveExamTab('endSem')}
           >
             📋 End Sem Exam (18 Nov - 07 Dec)
@@ -162,7 +168,7 @@ const TimeTablePage = () => {
         {activeExamTab === 'mst2' && (
           <div className={styles.examCard}>
             <div className={styles.examMeta}>
-              <div className={styles.examMetaTitle}>{examTimetables.mst2.title}</div>
+              <div className={styles.examMetaTitle} style={{ color: '#d97706' }}>{examTimetables.mst2.title}</div>
               <div className={styles.examMetaSub}>{examTimetables.mst2.batch} • Dates: {examTimetables.mst2.datesRange}</div>
             </div>
             <div className={styles.tableWrapper}>
@@ -183,21 +189,21 @@ const TimeTablePage = () => {
                         <tr key={`${entry.date}-${sIdx}`}>
                           {sIdx === 0 && (
                             <td rowSpan={entry.slots.length} style={{ fontWeight: 600, borderRight: '1px solid var(--border-color)', verticalAlign: 'top' }}>
-                              <div>{entry.dateDisplay}</div>
+                              <div style={{ color: '#d97706' }}>{entry.dateDisplay}</div>
                               <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
                             </td>
                           )}
                           <td>
-                            <span className={styles.timeBadge}><Clock size={12} /> {slot.time}</span>
+                            <span className={`${styles.timeBadge} ${styles.timeBadgeMst2}`}><Clock size={12} /> {slot.time}</span>
                           </td>
                           <td>
-                            <span className={styles.codeBadge}>{slot.code}</span>
+                            <span className={`${styles.codeBadge} ${styles.codeBadgeMst2}`}>{slot.code}</span>
                           </td>
                           <td style={{ fontWeight: 500 }}>{slot.subject}</td>
                           {sIdx === 0 && (
                             <td rowSpan={entry.slots.length} style={{ verticalAlign: 'middle', borderLeft: '1px solid var(--border-color)' }}>
                               <button 
-                                className={styles.viewDateBtn}
+                                className={`${styles.viewDateBtn} ${styles.viewDateBtnMst2}`}
                                 onClick={() => jumpToExamDate(entry.date)}
                                 title="Open this day in the interactive daily view"
                               >
@@ -219,7 +225,7 @@ const TimeTablePage = () => {
         {activeExamTab === 'remedial' && (
           <div className={styles.examCard}>
             <div className={styles.examMeta}>
-              <div className={styles.examMetaTitle}>{examTimetables.remedial.title}</div>
+              <div className={styles.examMetaTitle} style={{ color: '#7e22ce' }}>{examTimetables.remedial.title}</div>
               <div className={styles.examMetaSub}>{examTimetables.remedial.batch} • Dates: {examTimetables.remedial.datesRange}</div>
             </div>
             <div className={styles.tableWrapper}>
@@ -240,21 +246,21 @@ const TimeTablePage = () => {
                         <tr key={`${entry.date}-${sIdx}`}>
                           {sIdx === 0 && (
                             <td rowSpan={entry.slots.length} style={{ fontWeight: 600, borderRight: '1px solid var(--border-color)', verticalAlign: 'top' }}>
-                              <div>{entry.dateDisplay}</div>
+                              <div style={{ color: '#7e22ce' }}>{entry.dateDisplay}</div>
                               <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
                             </td>
                           )}
                           <td>
-                            <span className={styles.timeBadge}><Clock size={12} /> {slot.time}</span>
+                            <span className={`${styles.timeBadge} ${styles.timeBadgeRemedial}`}><Clock size={12} /> {slot.time}</span>
                           </td>
                           <td>
-                            <span className={styles.codeBadge}>{slot.code}</span>
+                            <span className={`${styles.codeBadge} ${styles.codeBadgeRemedial}`}>{slot.code}</span>
                           </td>
                           <td style={{ fontWeight: 500 }}>{slot.subject}</td>
                           {sIdx === 0 && (
                             <td rowSpan={entry.slots.length} style={{ verticalAlign: 'middle', borderLeft: '1px solid var(--border-color)' }}>
                               <button 
-                                className={styles.viewDateBtn}
+                                className={`${styles.viewDateBtn} ${styles.viewDateBtnRemedial}`}
                                 onClick={() => jumpToExamDate(entry.date)}
                                 title="Open this day in the interactive daily view"
                               >
@@ -276,7 +282,7 @@ const TimeTablePage = () => {
         {activeExamTab === 'endSem' && (
           <div className={styles.examCard}>
             <div className={styles.examMeta}>
-              <div className={styles.examMetaTitle}>{examTimetables.endSem.title}</div>
+              <div className={styles.examMetaTitle} style={{ color: '#0284c7' }}>{examTimetables.endSem.title}</div>
               <div className={styles.examMetaSub}>
                 <strong>{examTimetables.endSem.institute}</strong> • {examTimetables.endSem.subText}
               </div>
@@ -300,19 +306,19 @@ const TimeTablePage = () => {
                   {examTimetables.endSem.schedule.map((entry) => (
                     <tr key={entry.date}>
                       <td style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>
-                        <div>{entry.dateDisplay}</div>
+                        <div style={{ color: '#0284c7' }}>{entry.dateDisplay}</div>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{entry.day}</div>
                       </td>
                       <td>
-                        <span className={styles.timeBadge}><Clock size={12} /> {entry.time}</span>
+                        <span className={`${styles.timeBadge} ${styles.timeBadgeEndSem}`}><Clock size={12} /> {entry.time}</span>
                       </td>
                       <td>
-                        <span className={styles.codeBadge}>{entry.code}</span>
+                        <span className={`${styles.codeBadge} ${styles.codeBadgeEndSem}`}>{entry.code}</span>
                       </td>
                       <td style={{ fontWeight: 500 }}>{entry.subject}</td>
                       <td>
                         <button 
-                          className={styles.viewDateBtn}
+                          className={`${styles.viewDateBtn} ${styles.viewDateBtnEndSem}`}
                           onClick={() => jumpToExamDate(entry.date)}
                           title="Open this day in the interactive daily view"
                         >
@@ -330,7 +336,7 @@ const TimeTablePage = () => {
                 href={examTimetables.endSem.pdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.pdfBtn}
+                className={`${styles.pdfBtn} ${styles.pdfBtnEndSem}`}
               >
                 <Download size={16} /> Download Complete 5th Sem Exam PDF Scheme <ExternalLink size={14} />
               </a>

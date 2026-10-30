@@ -20,7 +20,8 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className={styles.grid}>
+    <>
+      <div className={styles.grid}>
       {weekDays.map((day, index) => (
         <div 
           key={day} 
@@ -37,20 +38,39 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
         const isSun = isSunday(day);
         const isSat = isSaturday(day);
         
-        // Check for academic events
+        // Check for specific exam types
+        const isMst2 = holiday && (holiday.includes('MST-II') || holiday.includes('MST 2'));
+        const isRemedial = holiday && holiday.toLowerCase().includes('remedial');
+        const isEndSem = holiday && (holiday.includes('End Sem') || holiday.includes('End Semester'));
+        const isMst1 = holiday && (holiday.includes('MST-I') || holiday.includes('MST 1')) && !isMst2;
         const isAcademic = holiday && (
-          holiday.includes('MST') || 
+          isMst2 || isRemedial || isEndSem || isMst1 ||
           holiday.includes('Exam') || 
           holiday.includes('Sem')
         );
 
         let cellClass = `${styles.dayCell} ${!isSameMonth(day, monthStart) ? styles.notCurrentMonth : ''} ${isToday(day) ? styles.today : ''}`;
+        let textClass = styles.holidayText;
         
-        // Priority Logic: Academic > Holiday > Saturday > Sunday
-        if (isAcademic) {
+        // Priority Logic: Specific Exams > Other Academic > Holiday > Saturday > Sunday
+        if (isMst2) {
+          cellClass += ` ${styles.eventMst2}`;
+          textClass = styles.mst2Text;
+        } else if (isRemedial) {
+          cellClass += ` ${styles.eventRemedial}`;
+          textClass = styles.remedialText;
+        } else if (isEndSem) {
+          cellClass += ` ${styles.eventEndSem}`;
+          textClass = styles.endSemText;
+        } else if (isMst1) {
+          cellClass += ` ${styles.eventMst1}`;
+          textClass = styles.mst1Text;
+        } else if (isAcademic) {
           cellClass += ` ${styles.academicEvent}`;
+          textClass = styles.academicText;
         } else if (holiday) {
           cellClass += ` ${styles.holiday}`;
+          textClass = styles.holidayText;
         } else if (isSat && isSameMonth(day, monthStart)) {
           cellClass += ` ${styles.saturday}`;
         } else if (isSun && isSameMonth(day, monthStart)) {
@@ -67,7 +87,7 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
             <span className={styles.dayNumber}>{format(day, 'd')}</span>
             
             {holiday && (
-              <div className={isAcademic ? styles.academicText : styles.holidayText}>
+              <div className={textClass}>
                 {holiday}
               </div>
             )}
@@ -82,6 +102,27 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
         );
       })}
     </div>
+
+    {/* Quick Visual Color Legend */}
+    <div className={styles.calendarLegend}>
+      <div className={styles.legendItem}>
+        <span className={`${styles.legendDot} ${styles.dotMst2}`} />
+        <span>MST-II (2-4 Nov)</span>
+      </div>
+      <div className={styles.legendItem}>
+        <span className={`${styles.legendDot} ${styles.dotRemedial}`} />
+        <span>Remedial MST (12-14 Nov)</span>
+      </div>
+      <div className={styles.legendItem}>
+        <span className={`${styles.legendDot} ${styles.dotEndSem}`} />
+        <span>End Sem Exam (18 Nov-7 Dec)</span>
+      </div>
+      <div className={styles.legendItem}>
+        <span className={`${styles.legendDot} ${styles.dotHoliday}`} />
+        <span>Holiday / Sunday</span>
+      </div>
+    </div>
+    </>
   );
 };
 
