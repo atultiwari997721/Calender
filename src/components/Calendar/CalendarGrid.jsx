@@ -38,27 +38,29 @@ const CalendarGrid = ({ currentMonth, onDateClick, notes, holidays }) => {
         const isSun = isSunday(day);
         const isSat = isSaturday(day);
         
-        // Check for specific exam types
-        const isMst2 = holiday && (holiday.includes('MST-II') || holiday.includes('MST 2'));
+        // Check for specific exam types (Only actual exam days are styled with distinct colors)
         const isRemedial = holiday && holiday.toLowerCase().includes('remedial');
-        const isEndSem = holiday && (holiday.includes('End Sem') || holiday.includes('End Semester'));
-        const isMst1 = holiday && (holiday.includes('MST-I') || holiday.includes('MST 1')) && !isMst2;
+        const isMst2 = holiday && !isRemedial && (holiday.includes('MST-II') || holiday.includes('MST 2'));
+        const isEndSem = holiday && !isRemedial && holiday.includes('End Sem Exam:');
+        const isMst1 = holiday && !isRemedial && !isMst2 && (holiday.includes('MST-I') || holiday.includes('MST 1'));
         const isAcademic = holiday && (
           isMst2 || isRemedial || isEndSem || isMst1 ||
           holiday.includes('Exam') || 
-          holiday.includes('Sem')
+          holiday.includes('Sem') ||
+          holiday.includes('Detention') ||
+          holiday.includes('Instruction')
         );
 
         let cellClass = `${styles.dayCell} ${!isSameMonth(day, monthStart) ? styles.notCurrentMonth : ''} ${isToday(day) ? styles.today : ''}`;
         let textClass = styles.holidayText;
         
-        // Priority Logic: Specific Exams > Other Academic > Holiday > Saturday > Sunday
-        if (isMst2) {
-          cellClass += ` ${styles.eventMst2}`;
-          textClass = styles.mst2Text;
-        } else if (isRemedial) {
+        // Priority Logic: Remedial MST > MST-II > End Sem Exam > MST-I > Other Academic > Holiday > Saturday > Sunday
+        if (isRemedial) {
           cellClass += ` ${styles.eventRemedial}`;
           textClass = styles.remedialText;
+        } else if (isMst2) {
+          cellClass += ` ${styles.eventMst2}`;
+          textClass = styles.mst2Text;
         } else if (isEndSem) {
           cellClass += ` ${styles.eventEndSem}`;
           textClass = styles.endSemText;
